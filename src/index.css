@@ -1,13 +1,56 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --blackBlue: hsl(229, 97%, 13%);
+  --purple: hsl(255, 82%, 59%);
+  --white: hsl(0, 0%, 100%);
+  --poppinsFont: "Poppins", sans serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--poppinsFont);
+  background-image: url("./static/background_photo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+h1 {
+  background-color: var(--blackBlue);
+  color: var(--white);
+  padding: 1rem 0 1rem 0;
+  text-align: center;
+  font-size: 2rem;
+}
+
+span {
+  color: var(--purple);
+}
+
+main {
+  /* height: 700px; */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+input {
+  font-size: 1rem;
+  text-align: center;
+  width: 17rem;
+  padding: 1rem;
+  border-radius: 0.1875rem;
+  border: none;
+  margin-top: 8rem;
+}
+
+button {
+  font-size: 0.875rem;
+  border-radius: 3.375rem;
+}
+
+.search-button {
+
 }
