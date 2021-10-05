@@ -1,8 +1,12 @@
 :root {
+  --black: hsl(0,0%,0%);
   --blackBlue: hsl(229, 97%, 13%);
+  --blackBlueOpaque: hsla(229, 97%, 13%, 0.7);
   --purple: hsl(255, 82%, 59%);
+  --purpleLight: hsl(255, 79.2%, 58.4%);
   --white: hsl(0, 0%, 100%);
-  --poppinsFont: "Poppins", sans serif;
+  --poppinsFont: "Poppins", sans-serif;
+  --workSansFont: "Work Sans", sans-serif;
 }
 
 html,
@@ -30,10 +34,12 @@ span {
 }
 
 main {
-  /* height: 700px; */
+  height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 10rem;
+
 }
 
 input {
@@ -43,14 +49,5 @@ input {
   padding: 1rem;
   border-radius: 0.1875rem;
   border: none;
-  margin-top: 8rem;
-}
-
-button {
-  font-size: 0.875rem;
-  border-radius: 3.375rem;
-}
-
-.search-button {
-
+  margin: 2rem;
 }
