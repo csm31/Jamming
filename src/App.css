@@ -8,19 +8,38 @@ input {
   width: 100%;
 }
 
-section:last-child h2 {
-  margin-top: 2rem;
+#tiles section:last-child {
+  display: flex;
+  flex-direction: column;
 }
 
-section:last-child h2::after {
+.playlistName {
+  display: block;
+  font-family: var(--poppinsFont);
+  font-size: 1.8rem;
+  color: var(--white);
+  text-align: left;
+  padding: 1rem;
+  margin: 2rem 0 0 0;
+  background: none;
+}
+
+.playlistName + span {
+  display: block;
+  padding-left: 1rem;
+}
+
+.playlistName + span::after {
   display: block;
   content: "";
-  width: 30%;
+  width: 95%;
   height: 1px;
   background-color: var(--white);
   opacity: 0.6;
-  position: absolute;
-  margin-top: 1rem;
+}
+
+.playlistName:focus-visible {
+  outline: none;
 }
 
 .secondary-button {
@@ -30,4 +49,6 @@ section:last-child h2::after {
 
 .primary-button {
   width: 11rem;
+  margin: 2rem;
+  align-self: center;
 }

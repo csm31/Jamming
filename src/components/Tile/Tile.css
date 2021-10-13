@@ -6,12 +6,8 @@ section {
 }
 
 h2 {
-  font-family: var(--poppinsFont);
   font-size: 1.8rem;
-  color: var(--white);
   padding: 1rem;
 }
 
-.playlistName {
-  margin-top: 0;
-}
+

@@ -1,0 +1,43 @@
+.results {
+  flex-direction: row;
+  width: 100%;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+h3 {
+  font-family: var(--workSansFont);
+  font-size: 1.125rem;
+  margin: 1rem 0 0.22rem 1rem;
+}
+
+h3 + p {
+  font-family: var(--workSansFont);
+  font-size: 0.9rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+}
+
+h3 + p::after {
+  display: block;
+  content: "";
+  width: 103%;
+  height: 1px;
+  background-color: var(--white);
+  position: relative;
+  top: 1rem;
+}
+
+a {
+ 
+}
+
+.tracklist {
+  display: flex;
+  align-items: center;
+}
+
+.tracklist div {
+  width: 95%;
+}
