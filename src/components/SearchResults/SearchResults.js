@@ -18,7 +18,7 @@ export class SearchResults extends React.Component {
                     {el.artists[0].name} | {el.album.name}
                   </p>
                 </div>
-                <a>+</a>
+                <button className="add-track">+</button>
               </div>
             );
           })}

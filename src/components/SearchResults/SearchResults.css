@@ -33,8 +33,8 @@ h3 + p::after {
   content:none
 }
 
-a {
- 
+.add-track {
+ background: none;
 }
 
 .tracklist {
