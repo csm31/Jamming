@@ -28,6 +28,10 @@ h3 + p::after {
   position: relative;
   top: 1rem;
 }
+/* TODO refractoring with above ? */
+.tracklist:last-of-type > div > p::after {
+  content:none
+}
 
 a {
  
