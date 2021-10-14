@@ -4,12 +4,15 @@ import { Button } from "./components/Button/Button";
 import { Tile } from "./components/Tile/Tile";
 import { Spotify } from "./utility/Spotify";
 
+
+
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { searchValue: null };
+    this.state = { searchValue: null, addTrack:null  };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSearchClick = this.handleSearchClick.bind(this);
+    this.addTrack = this.addTrack.bind(this);
   }
   /**
    * Update searchValue on an input change
@@ -29,6 +32,15 @@ class App extends React.Component {
   async handleSearchClick() {
     const responseJSON = await Spotify.search(this.state.searchValue);
     this.setState({ responseJSON: responseJSON });
+  }
+  /**
+   * Update addTrack on a click
+   */
+  addTrack(track) {
+    const newState = Object.assign({}, this.state);
+    newState.addTrack = track;
+    this.setState(newState);
+    this.setState({ addTrack: track });
   }
 
   render() {
@@ -56,12 +68,15 @@ class App extends React.Component {
               title="results"
               searchTile="true"
               searchResults={this.state.responseJSON}
+              addTrack={this.addTrack}
             />
             <Tile
               buttonValue="save to spotify"
               buttonClass="primary-button"
               title="new playlist"
               input="true"
+              addTrack={this.state.addTrack}
+              searchResults={this.state.responseJSON}
             />
           </div>
         </main>

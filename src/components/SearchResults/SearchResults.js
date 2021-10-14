@@ -1,7 +1,18 @@
 import React from "react";
 import "./SearchResults.css";
 
+
 export class SearchResults extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleAddTrack = this.handleAddTrack.bind(this);
+  }
+
+  handleAddTrack(event) {
+    const track = event.target.attributes[1].value;
+    this.props.addTrack(track)
+  }
+
   render() {
     return (
       <div>
@@ -18,7 +29,9 @@ export class SearchResults extends React.Component {
                     {el.artists[0].name} | {el.album.name}
                   </p>
                 </div>
-                <button className="add-track">+</button>
+                <button className="add-track" id={el.id} onClick={this.handleAddTrack}>
+                  +
+                </button>
               </div>
             );
           })}
