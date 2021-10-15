@@ -2,10 +2,11 @@
 :root {
   --black: hsl(0, 0%, 0%);
   --blackBlue: hsl(229, 97%, 13%);
-  --blackBlueOpaque: hsla(229, 97%, 13%, 0.7);
+  --blackBlueLessOpaque: hsla(229, 97%, 13%, 0.7);
   --purple: hsl(255, 82%, 59%);
   --purpleLight: hsl(255, 79.2%, 58.4%);
   --white: hsl(0, 0%, 100%);
+  --whiteLessOpaque: hsla(0, 0%, 100%, 0.6);
   --poppinsFont: "Poppins", sans-serif;
   --workSansFont: "Work Sans", sans-serif;
 }

@@ -1,6 +1,6 @@
 section {
   width: 40%;
-  background-color: var(--blackBlueOpaque);
+  background-color: var(--blackBlueLessOpaque);
   box-shadow: 0 0.25rem 0.125rem 0.125rem var(--black);
 }
 
@@ -8,5 +8,3 @@ h2 {
   font-size: 1.8rem;
   padding: 1rem;
 }
-
-

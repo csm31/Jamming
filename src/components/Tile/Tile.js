@@ -12,31 +12,58 @@ export class Tile extends React.Component {
     const capitalTitle = capitalizeTitle(this.props.title);
     return (
       <section>
-        {this.props.input ? (
+        {this.props.searchTile ? (
+          <>
+            <h2>{capitalTitle}</h2>
+            <SearchResults
+              searchedTracks={this.props.searchedTracks}
+              addTrack={this.props.addTrack}
+            />
+          </>
+        ) : (
           <>
             <input className="playlistName" defaultValue={capitalTitle} />
-            {/* span used for the bottom line, check if stay like that or use alternative*/}
-            <span></span>
             {this.props.playlistTracks && (
               <Playlist playlistTracks={this.props.playlistTracks} />
             )}
+            <Button
+              value={this.props.buttonValue}
+              class={this.props.buttonClass}
+            />
           </>
-        ) : (
-          <h2>{capitalTitle}</h2>
-        )}
-        {this.props.searchedTracks && !!this.props.searchedTracks.length && (
-          <SearchResults
-            searchedTracks={this.props.searchedTracks}
-            addTrack={this.props.addTrack}
-          />
-        )}
-        {this.props.buttonValue && (
-          <Button
-            value={this.props.buttonValue}
-            class={this.props.buttonClass}
-          />
         )}
       </section>
     );
+
+    // return (
+    //   <section>
+    //     {this.props.input ? (
+    //       <>
+    //         <input className="playlistName" defaultValue={capitalTitle} />
+    //         {/* span used for the bottom line, check if stay like that or use alternative*/}
+    //         <span></span>
+    //         {this.props.playlistTracks &&
+    //           <Playlist playlistTracks={this.props.playlistTracks} />
+    //         }
+    //            {this.props.buttonValue &&
+    //       <Button
+    //         value={this.props.buttonValue}
+    //         class={this.props.buttonClass}
+    //       />
+    //       </>
+    //     )) : (
+    //       <>
+    //       <h2>{capitalTitle}</h2>
+
+    //     {this.props.searchedTracks && !!this.props.searchedTracks.length &&
+    //       <SearchResults
+    //         searchedTracks={this.props.searchedTracks}
+    //         addTrack={this.props.addTrack}
+    //       />
+    //       </>
+    //     }
+
+    //   </section>
+    // );
   }
 }

@@ -23,7 +23,7 @@ class App extends React.Component {
    * @param {string} event.target.value
    */
   handleInputChange(event) {
-    // Alternative specially useful when there are several properties to set in state
+    // Alternative when there are several properties to set in state
     const newState = Object.assign({}, this.state);
     newState.searchValue = event.target.value;
     this.setState(newState);
@@ -38,7 +38,8 @@ class App extends React.Component {
     this.setState(newState);
   }
   /**
-   * Update addTrack on a click
+   * Update playlistTracks on a click
+   * @param {string} trackId
    */
   addTrack(trackId) {
     // convert for loop to Array.find
@@ -78,8 +79,7 @@ class App extends React.Component {
           <div id="tiles">
             <Tile
               title="results"
-              // TO DO: used boolean instead of string for searchTile
-              searchTile="true"
+              searchTile={true}
               searchedTracks={this.state.searchedTracks}
               addTrack={this.addTrack}
             />
@@ -87,7 +87,7 @@ class App extends React.Component {
               buttonValue="save to spotify"
               buttonClass="primary-button"
               title="new playlist"
-              input="true"
+              input={true}
               playlistTracks={this.state.playlistTracks}
             />
           </div>
