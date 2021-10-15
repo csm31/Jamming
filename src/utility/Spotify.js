@@ -44,7 +44,7 @@ const Spotify = {
 /**
  * Search for a track name with the Spotify search API
  * @param {string} searchTerm
- * @returns {object}
+ * @returns {Promise<object>}
  */
   async search(searchTerm) {
     const accessToken = this.getAccessToken();

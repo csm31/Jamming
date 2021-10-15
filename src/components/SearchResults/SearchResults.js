@@ -1,7 +1,6 @@
 import React from "react";
 import "./SearchResults.css";
 
-
 export class SearchResults extends React.Component {
   constructor(props) {
     super(props);
@@ -9,18 +8,16 @@ export class SearchResults extends React.Component {
   }
 
   handleAddTrack(event) {
-    const track = event.target.attributes[1].value;
-    this.props.addTrack(track)
+    const trackId = event.target.id;
+    this.props.addTrack(trackId);
   }
 
   render() {
     return (
       <div>
         {this.props &&
-          this.props.responseJSON &&
-          this.props.responseJSON.tracks &&
-          this.props.responseJSON.tracks.items &&
-          this.props.responseJSON.tracks.items.map((el) => {
+          this.props.searchedTracks &&
+          this.props.searchedTracks.map((el) => {
             return (
               <div className="tracklist" key={el.id}>
                 <div>
@@ -29,7 +26,11 @@ export class SearchResults extends React.Component {
                     {el.artists[0].name} | {el.album.name}
                   </p>
                 </div>
-                <button className="add-track" id={el.id} onClick={this.handleAddTrack}>
+                <button
+                  className="add-track"
+                  id={el.id}
+                  onClick={this.handleAddTrack}
+                >
                   +
                 </button>
               </div>

@@ -1,44 +1,32 @@
 import React from "react";
+
 import { Button } from "../Button/Button";
-import "./Tile.css";
-import { capitalizeTitle } from "../../utility/other";
+import { Playlist } from "../Playlist/Playlist";
 import { SearchResults } from "../SearchResults/SearchResults";
+import { capitalizeTitle } from "../../utility/other";
+
+import "./Tile.css";
 
 export class Tile extends React.Component {
-  constructor(props) {
-    super(props);
-    this.findTrack = this.findTrack.bind(this);
-  }
-
-  findTrack() {
-    const track = this.props.searchResults.tracks.items.find(
-      (el) => el.id === this.props.addTrack
-    );
-    return track;
-  }
-
   render() {
     const capitalTitle = capitalizeTitle(this.props.title);
     return (
-      
       <section>
         {this.props.input ? (
           <>
             <input className="playlistName" defaultValue={capitalTitle} />
+            {/* span used for the bottom line, check if stay like that or use alternative*/}
             <span></span>
-            {this.props.addTrack && (
-              <>
-                <h3>{this.findTrack().name}</h3>
-                <p>{this.findTrack().artists[0].name} | {this.findTrack().album.name}</p>
-              </>
+            {this.props.playlistTracks && (
+              <Playlist playlistTracks={this.props.playlistTracks} />
             )}
           </>
         ) : (
           <h2>{capitalTitle}</h2>
         )}
-        {this.props.searchTile && (
+        {this.props.searchedTracks && !!this.props.searchedTracks.length && (
           <SearchResults
-            responseJSON={this.props.searchResults}
+            searchedTracks={this.props.searchedTracks}
             addTrack={this.props.addTrack}
           />
         )}

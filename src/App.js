@@ -4,12 +4,14 @@ import { Button } from "./components/Button/Button";
 import { Tile } from "./components/Tile/Tile";
 import { Spotify } from "./utility/Spotify";
 
-
-
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { searchValue: null, addTrack:null  };
+    this.state = {
+      searchValue: "",
+      searchedTracks: [],
+      playlistTracks: [],
+    };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSearchClick = this.handleSearchClick.bind(this);
     this.addTrack = this.addTrack.bind(this);
@@ -31,16 +33,26 @@ class App extends React.Component {
    */
   async handleSearchClick() {
     const responseJSON = await Spotify.search(this.state.searchValue);
-    this.setState({ responseJSON: responseJSON });
+    const newState = Object.assign({}, this.state);
+    newState.searchedTracks = responseJSON.tracks.items;
+    this.setState(newState);
   }
   /**
    * Update addTrack on a click
    */
-  addTrack(track) {
+  addTrack(trackId) {
+    // convert for loop to Array.find
+    for (const track of this.state.playlistTracks) {
+      if (track.id === trackId) {
+        return this.state.playlistTracks;
+      }
+    }
+    const addedTrack = this.state.searchedTracks.find(
+      (el) => el.id === trackId
+    );
     const newState = Object.assign({}, this.state);
-    newState.addTrack = track;
+    newState.playlistTracks.push(addedTrack);
     this.setState(newState);
-    this.setState({ addTrack: track });
   }
 
   render() {
@@ -66,8 +78,9 @@ class App extends React.Component {
           <div id="tiles">
             <Tile
               title="results"
+              // TO DO: used boolean instead of string for searchTile
               searchTile="true"
-              searchResults={this.state.responseJSON}
+              searchedTracks={this.state.searchedTracks}
               addTrack={this.addTrack}
             />
             <Tile
@@ -75,8 +88,7 @@ class App extends React.Component {
               buttonClass="primary-button"
               title="new playlist"
               input="true"
-              addTrack={this.state.addTrack}
-              searchResults={this.state.responseJSON}
+              playlistTracks={this.state.playlistTracks}
             />
           </div>
         </main>
