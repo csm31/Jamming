@@ -5,7 +5,7 @@ export class Playlist extends React.Component {
   render() {
     return (
       // check if div is needed or can be replaced by <>
-      <div>
+      <>
         {this.props.playlistTracks.map((el) => {
           return (
             <div className="tracklist" key={el.id}>
@@ -21,7 +21,7 @@ export class Playlist extends React.Component {
             </div>
           );
         })}
-      </div>
+      </>
     );
   }
 }

@@ -87,7 +87,6 @@ class App extends React.Component {
               buttonValue="save to spotify"
               buttonClass="primary-button"
               title="new playlist"
-              input={true}
               playlistTracks={this.state.playlistTracks}
             />
           </div>
