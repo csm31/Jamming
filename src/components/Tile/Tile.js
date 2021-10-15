@@ -24,7 +24,10 @@ export class Tile extends React.Component {
           <>
             <input className="playlistName" defaultValue={capitalTitle} />
             {this.props.playlistTracks && (
-              <Playlist playlistTracks={this.props.playlistTracks} />
+              <Playlist
+                playlistTracks={this.props.playlistTracks}
+                removeTrack={this.props.removeTrack}
+              />
             )}
             <Button
               value={this.props.buttonValue}

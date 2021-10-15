@@ -3,6 +3,7 @@ import React from "react";
 import { Button } from "./components/Button/Button";
 import { Tile } from "./components/Tile/Tile";
 import { Spotify } from "./utility/Spotify";
+// import { Playlist } from "./components/Playlist/Playlist";
 
 class App extends React.Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class App extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSearchClick = this.handleSearchClick.bind(this);
     this.addTrack = this.addTrack.bind(this);
+    this.removeTrack = this.removeTrack.bind(this);
   }
   /**
    * Update searchValue on an input change
@@ -56,6 +58,15 @@ class App extends React.Component {
     this.setState(newState);
   }
 
+  removeTrack(trackId) {
+    const removedTrackIndex = this.state.playlistTracks.findIndex(
+      (el) => el.id === trackId
+    );
+    const newState = Object.assign({}, this.state);
+    newState.playlistTracks.splice(removedTrackIndex, 1);
+    this.setState(newState);
+  }
+
   render() {
     return (
       <>
@@ -88,6 +99,7 @@ class App extends React.Component {
               buttonClass="primary-button"
               title="new playlist"
               playlistTracks={this.state.playlistTracks}
+              removeTrack={this.removeTrack}
             />
           </div>
         </main>

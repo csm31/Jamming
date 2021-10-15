@@ -1,10 +1,16 @@
 import React from "react";
 
 export class Playlist extends React.Component {
-
+  constructor(props) {
+    super(props);
+    this.handleRemoveTrack = this.handleRemoveTrack.bind(this);
+  }
+  handleRemoveTrack(event) {
+    const trackId = event.target.id;
+    this.props.removeTrack(trackId);
+  }
   render() {
     return (
-      // check if div is needed or can be replaced by <>
       <>
         {this.props.playlistTracks.map((el) => {
           return (
@@ -15,9 +21,13 @@ export class Playlist extends React.Component {
                   {el.artists[0].name} | {el.album.name}
                 </p>
               </div>
-              {/* <button className="add-track" id={el.id} onClick={this.handleAddTrack}>
-                    +
-                  </button> */}
+              <button
+                className="add-track"
+                id={el.id}
+                onClick={this.handleRemoveTrack}
+              >
+                -
+              </button>
             </div>
           );
         })}
