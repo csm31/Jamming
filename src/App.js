@@ -44,11 +44,12 @@ class App extends React.Component {
    * @param {string} trackId
    */
   addTrack(trackId) {
-    // convert for loop to Array.find
-    for (const track of this.state.playlistTracks) {
-      if (track.id === trackId) {
-        return this.state.playlistTracks;
-      }
+    // check if the track was already added to the playlist
+    const existingTrack = this.state.playlistTracks.find(
+      (el) => el.id === trackId
+    );
+    if (existingTrack) {
+      return this.state.playlistTracks;
     }
     const addedTrack = this.state.searchedTracks.find(
       (el) => el.id === trackId
