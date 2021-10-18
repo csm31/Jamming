@@ -8,7 +8,9 @@ const createPlaylistEndpoint = "/v1/users/";
 const addTracks = "/v1/playlists/";
 const clientID = "10e9b8b8c4c94f1e93880396710e966e";
 const responseType = "token";
-const redirectUri = "http://localhost:3000/";
+// const redirectUri = "http://localhost:3000/";
+const redirectUri = "http://jamming_capucine_soum.surge.sh";
+
 const scope = "playlist-modify-public";
 const searchType = "track";
 
