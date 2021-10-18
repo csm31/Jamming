@@ -1,9 +1,10 @@
 let accessToken = null;
-const userId = "11173213555";
+// const userId = "11173213555";
 const accountBaseAddress = "https://accounts.spotify.com";
 const apiBaseAddress = "https://api.spotify.com";
 const authenticationEndpoint = "/authorize";
 const searchEndpoint = "/v1/search";
+const userProfileEndpoint = "/v1/me";
 const createPlaylistEndpoint = "/v1/users/";
 const addTracks = "/v1/playlists/";
 const clientID = "10e9b8b8c4c94f1e93880396710e966e";
@@ -74,15 +75,41 @@ const Spotify = {
     }
   },
   /**
+   * Find the current user id with the Spotify API
+   * @param {string} playlistName
+   * @returns {Promise<object>}
+   */
+  async userId() {
+    const accessToken = this.getAccessToken();
+    const url = `${apiBaseAddress}${userProfileEndpoint}`;
+    try {
+      const response = await fetch(url, {
+        // method:"GET",
+        // mode: "cors",
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+      if (response.ok) {
+        const responseJSON = await response.json();
+        return responseJSON.id;
+      } else {
+        throw Error();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  /**
    * Create a new playlist with the Spotify API
    * @param {string} playlistName
    * @returns {Promise<object>}
    */
   async createPlaylist(playlistName) {
     // if no change in the playlist name input
-    if (!playlistName) {
-      playlistName = "New Playlist";
-    }
+    // if (!playlistName) {
+    //   playlistName = "New Playlist";
+    // }
+    const userId = await Spotify.userId();
     const url = `${apiBaseAddress}${createPlaylistEndpoint}${userId}/playlists`;
     try {
       const response = await fetch(url, {
