@@ -8,6 +8,16 @@ import { capitalizeTitle } from "../../utility/other";
 import "./Tile.css";
 
 export class Tile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.playlistNameChange = this.playlistNameChange.bind(this);
+  }
+
+  playlistNameChange(event) {
+    const name = event.target.value;
+    this.props.playlistChangedName(name);
+  }
+
   render() {
     const capitalTitle = capitalizeTitle(this.props.title);
     return (
@@ -22,7 +32,11 @@ export class Tile extends React.Component {
           </>
         ) : (
           <>
-            <input className="playlistName" defaultValue={capitalTitle} />
+            <input
+              className="playlistName"
+              defaultValue={capitalTitle}
+              onChange={this.playlistNameChange}
+            />
             {this.props.playlistTracks && (
               <Playlist
                 playlistTracks={this.props.playlistTracks}
@@ -32,6 +46,7 @@ export class Tile extends React.Component {
             <Button
               value={this.props.buttonValue}
               class={this.props.buttonClass}
+              // onClick={this.createPlaylist}
             />
           </>
         )}

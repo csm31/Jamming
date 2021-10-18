@@ -12,11 +12,13 @@ class App extends React.Component {
       searchValue: "",
       searchedTracks: [],
       playlistTracks: [],
+      playlistName: "",
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSearchClick = this.handleSearchClick.bind(this);
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
+    this.playlistChangedName = this.playlistChangedName.bind(this);
   }
   /**
    * Update searchValue on an input change
@@ -40,7 +42,7 @@ class App extends React.Component {
     this.setState(newState);
   }
   /**
-   * Update playlistTracks on a click
+   * Add an object to playlistTracks on a click
    * @param {string} trackId
    */
   addTrack(trackId) {
@@ -59,12 +61,25 @@ class App extends React.Component {
     this.setState(newState);
   }
 
+  /**
+   * Remove an object to playlistTracks on a click
+   * @param {string} trackId
+   */
   removeTrack(trackId) {
     const removedTrackIndex = this.state.playlistTracks.findIndex(
       (el) => el.id === trackId
     );
     const newState = Object.assign({}, this.state);
     newState.playlistTracks.splice(removedTrackIndex, 1);
+    this.setState(newState);
+  }
+  /**
+   * Update playlistName on an input change
+   * @param {string} name
+   */
+   playlistChangedName(name) {
+    const newState = Object.assign({}, this.state);
+    newState.playlistName = name;
     this.setState(newState);
   }
 
@@ -82,7 +97,6 @@ class App extends React.Component {
             onChange={this.handleInputChange}
             placeholder="Enter A Song, Album, or Artist"
           ></input>
-
           <Button
             value="search"
             class="secondary-button"
@@ -101,6 +115,8 @@ class App extends React.Component {
               title="new playlist"
               playlistTracks={this.state.playlistTracks}
               removeTrack={this.removeTrack}
+              playlistChangedName={this.playlistChangedName}
+
             />
           </div>
         </main>
