@@ -12,14 +12,14 @@ class App extends React.Component {
       searchValue: "",
       searchedTracks: [],
       playlistTracks: [],
-      playlistName: "",
+      playlistName: "New Playlist",
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSearchClick = this.handleSearchClick.bind(this);
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
     this.playlistChangedName = this.playlistChangedName.bind(this);
-    this.createPlaylistWithTracks=this.createPlaylistWithTracks.bind(this)
+    this.createPlaylistWithTracks = this.createPlaylistWithTracks.bind(this);
   }
   /**
    * Update searchValue on an input change
@@ -78,17 +78,26 @@ class App extends React.Component {
    * Update playlistName on an input change
    * @param {string} name
    */
-   playlistChangedName(name) {
+  playlistChangedName(name) {
     const newState = Object.assign({}, this.state);
     newState.playlistName = name;
     this.setState(newState);
   }
-/**
+  /**
    * Create a playlist and add tracks by calling the Spotify API
    */
-  async createPlaylistWithTracks(){
-       return await Spotify.addTracks(this.state.playlistName, this.state.playlistTracks)
-
+  async createPlaylistWithTracks() {
+    const responseJSON = await Spotify.addTracks(
+      this.state.playlistName,
+      this.state.playlistTracks
+    );
+    console.log(responseJSON);
+    // Clean the tracks from the tile once the playlist is created
+    const newState = Object.assign({}, this.state);
+    newState.playlistTracks = [];
+    // TODO reset the playlist tile doesn't work
+    newState.playlistName = "New Playlist";
+    this.setState(newState);
   }
 
   render() {
@@ -120,12 +129,11 @@ class App extends React.Component {
             <Tile
               buttonValue="save to spotify"
               buttonClass="primary-button"
-              title="new playlist"
+              title={this.state.playlistName}
               playlistTracks={this.state.playlistTracks}
               removeTrack={this.removeTrack}
               playlistChangedName={this.playlistChangedName}
               onClick={this.createPlaylistWithTracks}
-
             />
           </div>
         </main>

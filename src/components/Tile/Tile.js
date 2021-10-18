@@ -34,7 +34,8 @@ export class Tile extends React.Component {
           <>
             <input
               className="playlistName"
-              defaultValue={capitalTitle}
+              // defaultValue={capitalTitle}
+              defaultValue={"New Playlist"}
               onChange={this.playlistNameChange}
             />
             {this.props.playlistTracks && (
