@@ -46,7 +46,7 @@ export class Tile extends React.Component {
             <Button
               value={this.props.buttonValue}
               class={this.props.buttonClass}
-              // onClick={this.createPlaylist}
+              onClick={this.props.onClick}
             />
           </>
         )}

@@ -19,6 +19,7 @@ class App extends React.Component {
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
     this.playlistChangedName = this.playlistChangedName.bind(this);
+    this.createPlaylistWithTracks=this.createPlaylistWithTracks.bind(this)
   }
   /**
    * Update searchValue on an input change
@@ -82,6 +83,13 @@ class App extends React.Component {
     newState.playlistName = name;
     this.setState(newState);
   }
+/**
+   * Create a playlist and add tracks by calling the Spotify API
+   */
+  async createPlaylistWithTracks(){
+       return await Spotify.addTracks(this.state.playlistName, this.state.playlistTracks)
+
+  }
 
   render() {
     return (
@@ -116,6 +124,7 @@ class App extends React.Component {
               playlistTracks={this.state.playlistTracks}
               removeTrack={this.removeTrack}
               playlistChangedName={this.playlistChangedName}
+              onClick={this.createPlaylistWithTracks}
 
             />
           </div>
