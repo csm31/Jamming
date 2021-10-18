@@ -1,5 +1,4 @@
 let accessToken = null;
-// const userId = "11173213555";
 const accountBaseAddress = "https://accounts.spotify.com";
 const apiBaseAddress = "https://api.spotify.com";
 const authenticationEndpoint = "/authorize";
