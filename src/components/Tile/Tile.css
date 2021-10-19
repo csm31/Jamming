@@ -7,4 +7,5 @@ section {
 h2 {
   font-size: 1.8rem;
   padding: 1rem;
+  cursor: default;
 }

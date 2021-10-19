@@ -4,7 +4,6 @@
   --blackBlue: hsl(229, 97%, 13%);
   --blackBlueLessOpaque: hsla(229, 97%, 13%, 0.7);
   --purple: hsl(255, 82%, 59%);
-  --purpleLight: hsl(255, 79.2%, 58.4%);
   --white: hsl(0, 0%, 100%);
   --whiteLessOpaque: hsla(0, 0%, 100%, 0.6);
   --poppinsFont: "Poppins", sans-serif;
@@ -143,21 +142,19 @@ table {
 /* INDEX */
 
 h1 {
-  color: var(--white);
   background-color: var(--blackBlue);
   text-align: center;
   font-size: 2rem;
   padding: 1rem 0 1rem 0;
 }
 
-span {
+h1 span {
   color: var(--purple);
 }
 
 main {
   display: flex;
   flex-direction: column;
-  height: 100%;
   align-items: center;
   padding-bottom: 10rem;
   background-image: url("./static/background_photo.jpg");
@@ -166,6 +163,7 @@ main {
   background-position: center;
 }
 
+/* TODO should it be in App.css? */
 input {
   font-size: 1rem;
   font-family: var(--workSansFont);
@@ -178,6 +176,14 @@ input {
   border: none;
 }
 
-input:focus-visible {
+input::placeholder {
+  color: var(--blackBlue);
+}
+
+input:focus:not(:focus-visible) {
   outline: none;
+}
+
+input:focus-visible {
+  outline: solid 4px var(--whiteLessOpaque);
 }

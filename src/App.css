@@ -2,13 +2,13 @@ input {
   margin-top: 7rem;
 }
 
-#tiles {
+main > div {
   display: flex;
   justify-content: space-evenly;
   width: 100%;
 }
 
-#tiles section:last-child {
+main div section:last-child {
   display: flex;
   flex-direction: column;
 }
