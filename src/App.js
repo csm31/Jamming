@@ -1,9 +1,10 @@
-import "./App.css";
 import React from "react";
+
 import { Button } from "./components/Button/Button";
-import { Tile } from "./components/Tile/Tile";
 import { Spotify } from "./utility/Spotify";
-// import { Playlist } from "./components/Playlist/Playlist";
+import { Tile } from "./components/Tile/Tile";
+
+import "./App.css";
 
 class App extends React.Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class App extends React.Component {
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
     this.playlistChangedName = this.playlistChangedName.bind(this);
-    this.createPlaylistWithTracks = this.createPlaylistWithTracks.bind(this);
+    this.savePlaylist = this.savePlaylist.bind(this);
   }
   /**
    * Update searchValue on an input change
@@ -28,7 +29,6 @@ class App extends React.Component {
    * @param {string} event.target.value
    */
   handleInputChange(event) {
-    // Alternative when there are several properties to set in state
     const newState = Object.assign({}, this.state);
     newState.searchValue = event.target.value;
     this.setState(newState);
@@ -63,7 +63,7 @@ class App extends React.Component {
   }
 
   /**
-   * Remove an object to playlistTracks on a click
+   * Remove an object from playlistTracks on a click
    * @param {string} trackId
    */
   removeTrack(trackId) {
@@ -86,12 +86,12 @@ class App extends React.Component {
   /**
    * Create a playlist and add tracks by calling the Spotify API
    */
-  async createPlaylistWithTracks() {
-    const responseJSON = await Spotify.addTracks(
+  async savePlaylist() {
+    // TODO should I call only addTracks here or createPlaylist + addTracks ?
+    await Spotify.addTracks(
       this.state.playlistName,
       this.state.playlistTracks
     );
-    console.log(responseJSON);
     // Clean the tracks from the tile once the playlist is created
     const newState = Object.assign({}, this.state);
     newState.playlistTracks = [];
@@ -113,7 +113,7 @@ class App extends React.Component {
             type="search"
             onChange={this.handleInputChange}
             placeholder="Enter A Song, Album, or Artist"
-          ></input>
+          />
           <Button
             value="search"
             class="secondary-button"
@@ -121,7 +121,7 @@ class App extends React.Component {
           />
           <div id="tiles">
             <Tile
-              title="results"
+              title="Results"
               searchTile={true}
               searchedTracks={this.state.searchedTracks}
               addTrack={this.addTrack}
@@ -133,7 +133,7 @@ class App extends React.Component {
               playlistTracks={this.state.playlistTracks}
               removeTrack={this.removeTrack}
               playlistChangedName={this.playlistChangedName}
-              onClick={this.createPlaylistWithTracks}
+              onClick={this.savePlaylist}
             />
           </div>
         </main>
