@@ -109,7 +109,6 @@ class App extends React.Component {
         <main>
           <input
             aria-label="Search for music"
-            className="searchBar"
             type="search"
             onChange={this.handleInputChange}
             placeholder="Enter A Song, Album, or Artist"
@@ -119,7 +118,7 @@ class App extends React.Component {
             class="secondary-button"
             onClick={this.handleSearchClick}
           />
-          <div id="tiles">
+          <div>
             <Tile
               title="Results"
               searchTile={true}
