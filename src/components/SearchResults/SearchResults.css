@@ -30,11 +30,15 @@ h3 + p::after {
 }
 /* TODO refractoring with above ? */
 .tracklist:last-of-type > div > p::after {
-  content:none
+  content: none;
 }
 
 .add-track {
- background: none;
+  background: none;
+}
+
+h2 ~ .tracklist div ~ .add-track:last-child {
+  display: none;
 }
 
 .tracklist {

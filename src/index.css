@@ -156,6 +156,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100%;
   padding-bottom: 10rem;
   background-image: url("./static/background_photo.jpg");
   background-repeat: no-repeat;
