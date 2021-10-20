@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Button } from "./components/Button/Button";
+import { SearchInput } from "./components/SearchInput/SearchInput";
 import { Spotify } from "./utility/Spotify";
 import { Tile } from "./components/Tile/Tile";
 
@@ -10,7 +11,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchValue: "",
+      searchValue: "Enter A Song, Album, or Artist",
       searchedTracks: [],
       playlistTracks: [],
       playlistName: "New Playlist",
@@ -37,11 +38,28 @@ class App extends React.Component {
    * Update responseJSON on a click with the result of Spotify API
    */
   async handleSearchClick() {
+    // if (!window.localStorage.length) {
+    //   window.localStorage.setItem("searchValue", this.state.searchValue);
+    // } else {
+    //   window.localStorage.removeItem("searchValue");
+    // }
     const responseJSON = await Spotify.search(this.state.searchValue);
     const newState = Object.assign({}, this.state);
     newState.searchedTracks = responseJSON.tracks.items;
+    // newState.searchValue = window.localStorage.getItem("searchValue");
     this.setState(newState);
   }
+
+  // componentDidUpdate(){
+  //   const searchTermExistsInLocalStorage = localStorage.getItem("searchValue");
+  //   if (searchTermExistsInLocalStorage) {
+
+  //     const newState = Object.assign({}, this.state);
+  //     newState.searchValue=searchTermExistsInLocalStorage
+  //     this.setState(newState)
+  // //     this.handleSearchClick();
+  //   }
+  // }
   /**
    * Add an object to playlistTracks on a click
    * @param {string} trackId
@@ -83,15 +101,13 @@ class App extends React.Component {
     newState.playlistName = name;
     this.setState(newState);
   }
+
   /**
    * Create a playlist and add tracks by calling the Spotify API
    */
   async savePlaylist() {
     // TODO should I call only addTracks here or createPlaylist + addTracks ?
-    await Spotify.addTracks(
-      this.state.playlistName,
-      this.state.playlistTracks
-    );
+    await Spotify.addTracks(this.state.playlistName, this.state.playlistTracks);
     // Clean the tracks from the tile once the playlist is created
     const newState = Object.assign({}, this.state);
     newState.playlistTracks = [];
@@ -107,12 +123,14 @@ class App extends React.Component {
           Ja<span>mmm</span>ing
         </h1>
         <main>
-          <input
+          <SearchInput searchValue={this.state.searchValue} handleInputChange={this.handleInputChange}/>
+          {/* <input
             aria-label="Search for music"
             type="search"
             onChange={this.handleInputChange}
-            placeholder="Enter A Song, Album, or Artist"
-          />
+            // placeholder="Enter A Song, Album, or Artist"
+            value={this.state.searchValue}
+          /> */}
           <Button
             value="search"
             class="secondary-button"

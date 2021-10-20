@@ -46,6 +46,7 @@ const Spotify = {
       const requestAuthentication = `${accountAddress}${authenticationEndpoint}?client_id=${clientID}&response_type=${responseType}&scope=${scope}&redirect_uri=${redirectUri}`;
       //navigate to the authentication page
       window.location = requestAuthentication;
+      
     }
   },
   /**
