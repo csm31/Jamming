@@ -41,21 +41,22 @@ class App extends React.Component {
     // Save the search term to retrieve it later
     window.sessionStorage.setItem("searchValue", this.state.searchValue);
     const responseJSON = await Spotify.search(this.state.searchValue);
-      const newState = Object.assign({}, this.state);
-      newState.searchedTracks = responseJSON.tracks.items;
-      this.setState(newState);
+    const newState = Object.assign({}, this.state);
+    newState.searchedTracks = responseJSON.tracks.items;
+    this.setState(newState);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    // Retrieve the save search
     const searchTermExistsInLocalStorage =
       sessionStorage.getItem("searchValue");
     if (searchTermExistsInLocalStorage) {
-      const newState = Object.assign({}, this.state);
+      let newState = Object.assign({}, this.state);
       newState.searchValue = searchTermExistsInLocalStorage;
       this.setState(newState);
     }
-    // this.handleSearchClick();
   }
+
   /**
    * Add an object to playlistTracks on a click
    * @param {string} trackId
