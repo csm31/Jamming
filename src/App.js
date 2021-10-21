@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Button } from "./components/Button/Button";
+import { SearchInput } from "./components/SearchInput/SearchInput";
 import { Spotify } from "./utility/Spotify";
 import { Tile } from "./components/Tile/Tile";
 
@@ -37,11 +38,25 @@ class App extends React.Component {
    * Update responseJSON on a click with the result of Spotify API
    */
   async handleSearchClick() {
+    // Save the search term to retrieve it later
+    window.sessionStorage.setItem("searchValue", this.state.searchValue);
     const responseJSON = await Spotify.search(this.state.searchValue);
     const newState = Object.assign({}, this.state);
     newState.searchedTracks = responseJSON.tracks.items;
     this.setState(newState);
   }
+
+  async componentDidMount() {
+    // Retrieve the save search
+    const searchTermExistsInLocalStorage =
+      sessionStorage.getItem("searchValue");
+    if (searchTermExistsInLocalStorage) {
+      let newState = Object.assign({}, this.state);
+      newState.searchValue = searchTermExistsInLocalStorage;
+      this.setState(newState);
+    }
+  }
+
   /**
    * Add an object to playlistTracks on a click
    * @param {string} trackId
@@ -83,15 +98,13 @@ class App extends React.Component {
     newState.playlistName = name;
     this.setState(newState);
   }
+
   /**
    * Create a playlist and add tracks by calling the Spotify API
    */
   async savePlaylist() {
     // TODO should I call only addTracks here or createPlaylist + addTracks ?
-    await Spotify.addTracks(
-      this.state.playlistName,
-      this.state.playlistTracks
-    );
+    await Spotify.addTracks(this.state.playlistName, this.state.playlistTracks);
     // Clean the tracks from the tile once the playlist is created
     const newState = Object.assign({}, this.state);
     newState.playlistTracks = [];
@@ -107,12 +120,17 @@ class App extends React.Component {
           Ja<span>mmm</span>ing
         </h1>
         <main>
-          <input
+          <SearchInput
+            searchValue={this.state.searchValue}
+            handleInputChange={this.handleInputChange}
+          />
+          {/* <input
             aria-label="Search for music"
             type="search"
             onChange={this.handleInputChange}
-            placeholder="Enter A Song, Album, or Artist"
-          />
+            // placeholder="Enter A Song, Album, or Artist"
+            value={this.state.searchValue}
+          /> */}
           <Button
             value="search"
             class="secondary-button"
