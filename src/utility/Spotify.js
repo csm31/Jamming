@@ -9,8 +9,8 @@ const createPlaylistEndpoint = "/v1/users/";
 const addTracksEndpoint = "/v1/playlists/";
 const responseType = "token";
 // TODO change redirectUri depending if I am in localhost or surge
-const redirectUri = "http://localhost:3000/";
-// const redirectUri = "http://jamming_capucine_soum.surge.sh";
+let redirectUri = "http://localhost:3000/";
+// const redirectUri =
 const scope = "playlist-modify-public";
 const searchType = "track";
 
@@ -20,7 +20,7 @@ const Spotify = {
    * @returns {string}
    */
   getAccessToken() {
-      if (accessToken) {
+    if (accessToken) {
       return accessToken;
     }
     // check the URL to see if it was just obtained
@@ -37,12 +37,15 @@ const Spotify = {
         () => (accessToken = ""),
         Number(expirationDuration) * 1000
       );
-      // TODO are the 2 lines below the same thing ?
+      // state of pushState is not use and title is not supported by most browsers
       window.history.pushState("Access Token", null, "/");
-      // window.history.pushState({}, "", window.location.origin);
       return accessToken;
     } else {
-      // ask for authorization with the Implicit Grant Flow (no client_secret)
+    //  redirectUri depends if you are using the build or not
+      if (window.location.href !== redirectUri) {
+        redirectUri = "http://jamming_capucine_soum.surge.sh";
+      }
+       // ask for authorization with the Implicit Grant Flow (no client_secret)
       const requestAuthentication = `${accountAddress}${authenticationEndpoint}?client_id=${clientID}&response_type=${responseType}&scope=${scope}&redirect_uri=${redirectUri}`;
       //navigate to the authentication page
       window.location = requestAuthentication;
