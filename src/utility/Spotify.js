@@ -41,9 +41,9 @@ const Spotify = {
       window.history.pushState("Access Token", null, "/");
       return accessToken;
     } else {
-    //  redirectUri depends if you are using the build or not
+    //  redirectUri depends if you are in developement mode or not
       if (window.location.href !== redirectUri) {
-        redirectUri = "http://jamming_capucine_soum.surge.sh";
+        redirectUri = "https://myjamming-csm31.netlify.app";
       }
        // ask for authorization with the Implicit Grant Flow (no client_secret)
       const requestAuthentication = `${accountAddress}${authenticationEndpoint}?client_id=${clientID}&response_type=${responseType}&scope=${scope}&redirect_uri=${redirectUri}`;

@@ -1,17 +1,19 @@
 # Project goal
+
 In this project, you will build a React web application called Jammming. You will use your knowledge of React components, passing state, and requests with the Spotify API to build a website that allows users to search the Spotify library, create a custom playlist, then save it to their Spotify account.
 
-We’ve broken the Jammming project into 13 sections. Each section contains a descriptive header with an introductory step followed by a set of steps that guide you to the outcome. The first step of each section will explain the goal and provide a brief overview of how we’ll accomplish it. Before you start the second step, try to plan how you would complete the section. As you finish the rest of the steps, reflect on how your solution compares to ours.
+# Example of the web app given by Codecademy
 
-# Example of the web app
-[link](http://jammming.s3-website-us-east-1.amazonaws.com/)
+Go to [Codecademy](http://jammming.s3-website-us-east-1.amazonaws.com/)
+
+# To start the project in production mode
+
+Go to [My app](https://myjamming-csm31.netlify.app)
 
 # Warning
-At step 74, you need to create a spotify account. If it doesn't work, you can either :
-- use other music APIs, see [this one](https://rapidapi.com/blog/top-free-music-data-apis/) and [this one](https://rapidapi.com/collection/music-apis)
 
-- or download and connect the “Windscribe” vpn (or another one), fake that you are in the US and then become a member
-
+To retrieve tracks the 1st time you need to fill the search bar with a term
+and click twice on the search button, the 1st time to retrieve the token or give the authorization, the 2nd time to search tracks.
 
 # Getting Started with Create React App
 
