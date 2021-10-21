@@ -123,13 +123,6 @@ class App extends React.Component {
             searchValue={this.state.searchValue}
             handleInputChange={this.handleInputChange}
           />
-          {/* <input
-            aria-label="Search for music"
-            type="search"
-            onChange={this.handleInputChange}
-            // placeholder="Enter A Song, Album, or Artist"
-            value={this.state.searchValue}
-          /> */}
           <Button
             value="search"
             class="secondary-button"
