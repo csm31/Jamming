@@ -37,7 +37,7 @@ const Spotify = {
         () => (accessToken = ""),
         Number(expirationDuration) * 1000
       );
-      // state of pushState is not use and title is not supported by most browsers
+      // state of pushState is not used and title is not supported by most browsers
       window.history.pushState("Access Token", null, "/");
       return accessToken;
     } else {
