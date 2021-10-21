@@ -108,7 +108,6 @@ class App extends React.Component {
     // Clean the tracks from the tile once the playlist is created
     const newState = Object.assign({}, this.state);
     newState.playlistTracks = [];
-    // TODO reset the playlist tile doesn't work
     newState.playlistName = "New Playlist";
     this.setState(newState);
   }
