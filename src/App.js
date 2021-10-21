@@ -11,7 +11,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchValue: "Enter A Song, Album, or Artist",
+      searchValue: "",
       searchedTracks: [],
       playlistTracks: [],
       playlistName: "New Playlist",
@@ -38,28 +38,24 @@ class App extends React.Component {
    * Update responseJSON on a click with the result of Spotify API
    */
   async handleSearchClick() {
-    // if (!window.localStorage.length) {
-    //   window.localStorage.setItem("searchValue", this.state.searchValue);
-    // } else {
-    //   window.localStorage.removeItem("searchValue");
-    // }
+    // Save the search term to retrieve it later
+    window.sessionStorage.setItem("searchValue", this.state.searchValue);
     const responseJSON = await Spotify.search(this.state.searchValue);
-    const newState = Object.assign({}, this.state);
-    newState.searchedTracks = responseJSON.tracks.items;
-    // newState.searchValue = window.localStorage.getItem("searchValue");
-    this.setState(newState);
+      const newState = Object.assign({}, this.state);
+      newState.searchedTracks = responseJSON.tracks.items;
+      this.setState(newState);
   }
 
-  // componentDidUpdate(){
-  //   const searchTermExistsInLocalStorage = localStorage.getItem("searchValue");
-  //   if (searchTermExistsInLocalStorage) {
-
-  //     const newState = Object.assign({}, this.state);
-  //     newState.searchValue=searchTermExistsInLocalStorage
-  //     this.setState(newState)
-  // //     this.handleSearchClick();
-  //   }
-  // }
+  componentDidMount() {
+    const searchTermExistsInLocalStorage =
+      sessionStorage.getItem("searchValue");
+    if (searchTermExistsInLocalStorage) {
+      const newState = Object.assign({}, this.state);
+      newState.searchValue = searchTermExistsInLocalStorage;
+      this.setState(newState);
+    }
+    // this.handleSearchClick();
+  }
   /**
    * Add an object to playlistTracks on a click
    * @param {string} trackId
@@ -123,7 +119,10 @@ class App extends React.Component {
           Ja<span>mmm</span>ing
         </h1>
         <main>
-          <SearchInput searchValue={this.state.searchValue} handleInputChange={this.handleInputChange}/>
+          <SearchInput
+            searchValue={this.state.searchValue}
+            handleInputChange={this.handleInputChange}
+          />
           {/* <input
             aria-label="Search for music"
             type="search"
