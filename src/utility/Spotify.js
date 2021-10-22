@@ -43,7 +43,7 @@ const Spotify = {
     } else {
     //  redirectUri depends if you are in developement mode or not
       if (window.location.href !== redirectUri) {
-        redirectUri = "https://jamming_capucine_soum.surge.sh/";
+        redirectUri = "http://jamming_capucine_soum.surge.sh/";
       }
        // ask for authorization with the Implicit Grant Flow (no client_secret)
       const requestAuthentication = `${accountAddress}${authenticationEndpoint}?client_id=${clientID}&response_type=${responseType}&scope=${scope}&redirect_uri=${redirectUri}`;
