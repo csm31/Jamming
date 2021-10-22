@@ -8,9 +8,7 @@ const userProfileEndpoint = "/v1/me";
 const createPlaylistEndpoint = "/v1/users/";
 const addTracksEndpoint = "/v1/playlists/";
 const responseType = "token";
-// TODO change redirectUri depending if I am in localhost or surge
 let redirectUri = "http://localhost:3000/";
-// const redirectUri =
 const scope = "playlist-modify-public";
 const searchType = "track";
 

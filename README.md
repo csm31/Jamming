@@ -8,7 +8,7 @@ Go to [Codecademy](http://jammming.s3-website-us-east-1.amazonaws.com/)
 
 # To start the project in production mode
 
-Go to [My app](https://myjamming-csm31.netlify.app)
+Go to [My app](http://jamming_capucine_soum.surge.sh)
 
 # Warning
 
